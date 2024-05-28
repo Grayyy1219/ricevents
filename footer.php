@@ -7,8 +7,8 @@
         <div class="footer-middle">
             <h3>Quick Links</h3>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="Landingpage.php#">Home</a></li>
+                <li><a href="">Services</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="login.html">Login</a></li>

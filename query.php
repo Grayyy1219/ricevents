@@ -38,8 +38,4 @@ echo "<style>
         --secondary: #005dab;
         --btext: #ffffff;
     }
-    p,
-    h1 {
-        color: var(--text);
-    }
 </style>";

@@ -1,14 +1,14 @@
 <div class="promsale"><a name="home"></a>
-    <p style="color: white;">Free Shipping for orders over <span><b>₱499</b></span> Nationwide</p>
+    <p style="color: white;">Unlimited movies, TV shows, and more. <span><b>₱299</b></span> Nationwide</p>
 </div>
 <nav>
     <div class="header">
         <div class="logo">
             <a href="Landingpage.php#"><img src="css/img/logo.png" height="55px">Ric Event</a>
             <div class="headerlink">
-                <a href="Landingpage.php#Books">Category</a>
-                <a href="Landingpage.php#Trending">Discoveries</a>
-                <a href="Landingpage.php#Browse">Browse</a>
+                <a href="Landingpage.php#1">Category</a>
+                <a href="Landingpage.php#2">Discoveries</a>
+                <a href="Landingpage.php#3">Browse</a>
             </div>
         </div>
 

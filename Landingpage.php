@@ -68,7 +68,9 @@
 
 <body>
     <?php include("header.php"); ?>
-    <div class="body"></div>
+    <div class="body">
+        
+    </div>
     <?php include("footer.php"); ?>
 </body>
 
