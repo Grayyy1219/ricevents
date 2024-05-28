@@ -1,0 +1,34 @@
+<div class="promsale"><a name="home"></a>
+    <p style="color: white;">Free Shipping for orders over <span><b>₱499</b></span> Nationwide</p>
+</div>
+<nav>
+    <div class="header">
+        <div class="logo">
+            <a href="Landingpage.php#"><img src="css/img/logo.png" height="55px">Ric Event</a>
+            <div class="headerlink">
+                <a href="Landingpage.php#Books">Category</a>
+                <a href="Landingpage.php#Trending">Discoveries</a>
+                <a href="Landingpage.php#Browse">Browse</a>
+            </div>
+        </div>
+
+        <div class="searchbar">
+            <input type="text" class="searchinp searchbar" id="searchbar" onchange="loadXMLDoc('search')" placeholder=" Search">
+            <button class="searchbtn"><img src="css/img/searchicon.png" width="25" style="filter: invert(1);"></button>
+        </div>
+
+        <div class="login">
+            <div class="pointer" id="popup-signin">
+                <p class="loginb">Sign in</p>
+            </div>
+            <div>|</div>
+            <div class="pointer" id="popup-create">
+                <p class="signupb">Create Account</p>
+            </div>
+        </div>
+    </div>
+    <div class="output" style="display: none;">
+        <div id="demo">
+        </div>
+    </div>
+</nav>
