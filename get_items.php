@@ -5,7 +5,6 @@ $filter = $_GET['filter'];
 $location = $_GET['location'];
 $search = $_GET['search'];
 
-// Prepare the SQL statement
 $sql = "SELECT * FROM events WHERE 1";
 $conditions = array();
 $params = array();
@@ -29,7 +28,6 @@ if (!empty($conditions)) {
 
 $stmt = $con->prepare($sql);
 
-// Bind parameters
 if (!empty($params)) {
     $types = str_repeat('s', count($params));
     $stmt->bind_param($types, ...$params);
@@ -44,7 +42,7 @@ if ($result->num_rows > 0) {
         $date = new DateTime($dateFromDb);
         $formattedDate = $date->format('F j, Y');
 
-        echo "<div class='event-card'>";
+        echo "<div class='event-card' onclick='preview(" . $row["EventID"] . ")'>";
         echo "<h3>" . htmlspecialchars($row["EventTitle"]) . "</h3>";
         // echo "<p><strong>Description:</strong> " . htmlspecialchars($row["Description"]) . "</p>"; 
         echo "<p><strong>Date:</strong> " . $formattedDate . "</p>";
@@ -55,6 +53,5 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-// Close statement and connection
 $stmt->close();
 $con->close();

@@ -6,8 +6,8 @@
         <div class="logo">
             <a href="Landingpage.php#"><img src="css/img/logo.png" height="55px"><?= $companyname ?></a>
             <div class="headerlink">
-                <a href="Landingpage.php#1">Category</a>
-                <a href="Landingpage.php#2">Discoveries</a>
+                <a href="Landingpage.php#myevent">My Events</a>
+                <a href="Landingpage.php#events">Discoveries</a>
                 <a href="Landingpage.php#3">Browse</a>
             </div>
         </div>

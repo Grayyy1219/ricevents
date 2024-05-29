@@ -201,6 +201,7 @@ footer .container {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    padding: 0 130px;
 }
 
 footer h3 {
@@ -240,7 +241,7 @@ footer ul li a:hover {
 .footer-right {
     flex: 1;
     min-width: 250px;
-    margin: 10px;
+    margin: 10px 60px;
 }
 
 .footer-bottom {
@@ -427,4 +428,3 @@ footer ul li a:hover {
 .form-section a:hover {
     color: #0056b3;
 }
-

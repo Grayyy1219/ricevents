@@ -1,6 +1,3 @@
-:root {
-    --primary-color: #333;
-}
 
 .wrapper {
     max-width: 500px;
@@ -8,12 +5,16 @@
 }
 
 form {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
     padding: 20px;
-    border: 1px solid var(--primary-color);
-    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 70px auto;
 }
 
-/* Profile Picture */
 #w1 img {
     max-width: 200px;
     height: auto;
@@ -21,29 +22,28 @@ form {
     margin-bottom: 20px;
 }
 
-/* Upload Button */
 .btn-upload-img {
     display: block;
     width: 200px;
     margin: 0 auto;
     text-align: center;
     padding: 10px;
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
 }
 
-/* Text Inputs */
 input[type="text"] {
-    width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
     margin-bottom: 20px;
-    border: 1px solid var(--primary-color);
     border-radius: 5px;
 }
 
-/* Save Button */
 .btn-save {
     display: block;
     text-align: center;
@@ -51,7 +51,7 @@ input[type="text"] {
 }
 
 .btnsave {
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -59,15 +59,16 @@ input[type="text"] {
     display: inline-block;
 }
 
-/* Borders */
 .border {
-    border-bottom: 1px solid var(--primary-color);
     padding-bottom: 10px;
-    margin-bottom: 10px;
 }
 
 .weditimg {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.weform {
+    margin-top: 25px;
 }

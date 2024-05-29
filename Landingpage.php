@@ -19,12 +19,6 @@
     <div class="body">
         <section>
             <div class="" id="w1">
-                <!-- <?php
-                        echo " <div id='bg' class='image-container'>
-                    <img src='$backgroundimg'>
-                    <div class='fade-overlay'></div>
-                </div>";
-                        ?> -->
                 <div class=" slideshow-container">
                     <button class="prev-button">&#10094;</button>
                     <div class="slides-container">
@@ -41,7 +35,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="myevent" style="    padding-top: 50px;">
             <?php
             $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
                       FROM myevents
@@ -85,14 +79,16 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="events">
             <h1 style=" text-align: center; font-size: xxx-large; ">Events</h1>
             <div class="update">
                 <div class="search">
                     Search by Title:
                     <input type="text" id="searchInput" onkeyup="searchEvents()" placeholder="Enter event title...">
                 </div>
+                <style>
 
+                </style>
                 <div class="filter">
                     Filter:
                     <select id="filterbar" onchange="loadevents()">
@@ -101,7 +97,7 @@
                         <option value="1">Unavailable</option>
                     </select>
                 </div>
-                <div class="sort">
+                <div class="filter">
                     Sort by Location:
                     <select id="locationbar" onchange="loadevents()">
                         <option value="none">All</option>
@@ -151,6 +147,10 @@
                 function updateEventsList(response) {
                     var eventsList = document.getElementById("eventsList");
                     eventsList.innerHTML = response;
+                }
+
+                function preview($eventid){
+
                 }
             </script>
         </section>

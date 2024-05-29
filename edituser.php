@@ -8,9 +8,7 @@
     include("connect.php");
     include("query.php"); ?>
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/userinfo.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" href="css/img/logo.ico">
     <?php
     echo "<style>
@@ -37,7 +35,7 @@
                         echo "<img id='profileImage' src='$location' alt='Profile Picture'>";
                         ?>
                         <label class="btn-upload-img">
-                            Upload Profile Picture <input type="file" id="img" name="img" accept="image/*">
+                            Upload Profile Picture <input type="file" id="img" name="img" accept="image/*" style="display: none;">
                         </label>
                     </div>
                     <div class="weform">
