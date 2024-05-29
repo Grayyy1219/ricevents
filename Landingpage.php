@@ -9,64 +9,9 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/slideshow.css">
-
+    <link rel="stylesheet" href="css/eventstable.css">
     <link rel="icon" href="css/img/logo.ico">
-    <style>
-        /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Header styles */
-        header {
-            background: #333;
-            padding: 10px 0;
-            color: #fff;
-        }
-
-        .logo img {
-            max-height: 50px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 5px 10px;
-            transition: background 0.3s;
-        }
-
-        nav ul li a:hover {
-            background: #555;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 
 <body onload="loadevents()">
@@ -97,6 +42,51 @@
             </div>
         </section>
         <section>
+            <?php
+            $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
+                      FROM myevents
+                      INNER JOIN events ON myevents.eventid  = events.EventID 
+                      WHERE myevents.customer_id = $UserID";
+            $result = mysqli_query($con, $getEventQuery);
+            $totalCartValue = 0;
+            ?>
+            <div class="your-events">
+                <div class="headertitle">
+                    <img src="css/img/time.png" style="width: 30px;">
+                    <p class="count"><?= $eventcount ?></p>
+                    <p class="HeaderName">Events you are in</p>
+                </div>
+                <div class="iventdom">
+                    <?php while ($row = mysqli_fetch_assoc($result)) {
+                        $dateFromDb = $row['Date'];
+                        $date = new DateTime($dateFromDb);
+                        $formattedDate = $date->format('F j, Y');
+                    ?>
+                        <div class="perevent">
+                            <div class="eventdate">
+                                <img src="css/img/time.png" style="width: 25px;">
+                                <p><?= $formattedDate ?></p>
+                            </div>
+                            <div class="rows">
+                                <div class="row">
+                                    <h1 class="eventh1"><?= $row['EventTitle'] ?></h1>
+                                </div>
+                                <div class="row2">
+                                    <img src="css/img/pin.png" style="width: 15px;">
+                                    <p class=" location"><?= $row['Location'] ?></p>
+                                </div>
+                                <div class="row3">
+                                    <p class="description"><?= $row['Description'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h1 style=" text-align: center; font-size: xxx-large; ">Events</h1>
             <div class="update">
                 <div class="search">
                     Search by Title:
@@ -123,7 +113,8 @@
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                $options .= "<option value='" . $row["Location"] . "'>" . $row["Location"] . "</option>";
+                                $location = htmlspecialchars($row["Location"], ENT_QUOTES, 'UTF-8');
+                                $options .= "<option value='" .  $location . "'>" .  $location . "</option>";
                             }
                         } else {
                             $options .= "<option value=''>No locations found</option>";

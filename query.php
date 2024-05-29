@@ -10,6 +10,10 @@ if ($username != 0) {
     $queryUser = mysqli_query($con, "SELECT * FROM users WHERE username = '$username'");
     $rowUser = mysqli_fetch_assoc($queryUser);
     $password = $rowUser["Password"];
+    $UserID = $rowUser["UserID"];
+    $query69 = mysqli_query($con, "SELECT COUNT(MyEventID) AS count from myevents WHERE customer_id = $UserID");
+    $row69 = mysqli_fetch_assoc($query69);
+    $eventcount = $row69["count"];
 }
 
 
