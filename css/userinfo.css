@@ -1,15 +1,12 @@
-/* Primary color */
 :root {
     --primary-color: #333;
 }
 
-/* Wrapper */
 .wrapper {
     max-width: 500px;
     margin: 0 auto;
 }
 
-/* Form */
 form {
     padding: 20px;
     border: 1px solid var(--primary-color);

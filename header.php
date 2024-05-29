@@ -1,5 +1,5 @@
 <div class="promsale"><a name="home"></a>
-    <p style="color: white;">Unlimited movies, TV shows, and more. <span><b>₱299</b></span> Nationwide</p>
+    <p style="color: white;">Endless Events, Exclusive Access, and More! <span><b>Starting at just ₱299</b></span> Nationwide!</p>
 </div>
 <nav>
     <div class="header">

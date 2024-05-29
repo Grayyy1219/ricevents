@@ -4,7 +4,6 @@ include("query.php");
 
 $resetemail = $_POST['email'];
 
-// Function to generate a random password
 function generateRandomPassword($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -40,17 +39,14 @@ if ($result->num_rows > 0) {
         $mail->Port = 465;
 
         $row = $result->fetch_assoc();
-        $tempPassword = generateRandomPassword(); // Generate a random password
-        $hashedPassword = password_hash($tempPassword, PASSWORD_DEFAULT); // Hash the temporary password
-
-        // Update the user's password in the database
+        $tempPassword = generateRandomPassword();
+        $hashedPassword = password_hash($tempPassword, PASSWORD_DEFAULT);
         $updatePasswordQuery = "UPDATE users SET Password='$hashedPassword' WHERE email='$resetemail'";
         mysqli_query($con, $updatePasswordQuery);
 
         $mail->setFrom('noreply.thebookhaven@gmail.com', 'Northstar drug');
         $mail->addAddress($resetemail, '');
 
-        // Email content with the temporary password
         $message = '
         <html>
         <body>
@@ -63,13 +59,11 @@ if ($result->num_rows > 0) {
         </body>
         </html>
     ';
-        // Set the email content
         $mail->isHTML(true);
         $mail->Subject = 'Temporary Password Reset - Northstar drug Library Account';
         $mail->Body = $message;
         $mail->AltBody = 'Your temporary password has been reset. Temporary Password: ' . $tempPassword;
 
-        // Send the email
         $mail->send();
 
         echo '<script>alert("Temporary password sent to your email!");</script>';

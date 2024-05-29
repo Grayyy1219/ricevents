@@ -13,7 +13,6 @@
 
 .one {
   position: relative;
-  /* Make sure .one is positioned relative for absolute positioning of overlay */
   width: 86vw;
   display: flex;
   flex-direction: column;
@@ -111,43 +110,11 @@
   }
 }
 
-/* categories */
-.itemcard2 {
-  display: flex;
-  background-color: #efefef;
-  align-items: center;
-  gap: 3px;
-  padding: 3px;
-  border-radius: 44px;
-  min-width: 190px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
 
-.itemcard2>img {
-  background-color: white;
-  border-radius: 50%;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
 
-#shop {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-}
 
-.categories {
-  text-align: center;
-}
 
-.shop {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  max-width: 590px;
-}
+
 
 .update {
   display: flex;
@@ -161,6 +128,10 @@
   padding: 1vh;
 }
 
+.update input {
+  padding: 1vh;
+}
+
 .output {
   margin-top: 50px;
   border: solid rgba(0, 0, 0, 0.288) 1px;
@@ -170,4 +141,66 @@
   display: flex;
   padding: 50px;
   margin: 50px;
+}
+
+/* CSS for event card display */
+.event-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-card h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.event-card p {
+  margin: 10px 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.event-card p strong {
+  font-weight: bold;
+}
+
+.event-info {
+  background-color: #e9f5fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.event-warning {
+  background-color: #fdf2cf;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.event-danger {
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.event-success {
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.event-info p,
+.event-warning p,
+.event-danger p,
+.event-success p {
+  margin: 5px 0;
+}
+
+.event-title {
+  font-weight: bold;
+  color: #007bff;
 }

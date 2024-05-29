@@ -6,7 +6,11 @@ $location = $row["profile"];
 $username = $row["username"];
 $FName = $row["FName"];
 $email = $row["email"];
-
+if ($username != 0) {
+    $queryUser = mysqli_query($con, "SELECT * FROM users WHERE username = '$username'");
+    $rowUser = mysqli_fetch_assoc($queryUser);
+    $password = $rowUser["Password"];
+}
 
 
 $queryPage = mysqli_query($con, "SELECT * FROM page WHERE ItemID IN (1, 2, 3, 4, 5)");

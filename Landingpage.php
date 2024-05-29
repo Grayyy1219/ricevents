@@ -69,7 +69,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadevents()">
     <?php include("header.php"); ?>
     <div class="body">
         <section>
@@ -98,27 +98,70 @@
         </section>
         <section>
             <div class="update">
+                <div class="search">
+                    Search by Title:
+                    <input type="text" id="searchInput" onkeyup="searchEvents()" placeholder="Enter event title...">
+                </div>
+
                 <div class="filter">
                     Filter:
-                    <select id="filterbar" onchange="loadXMLDoc('filter')" value="">
-                        <option value="None">All</option>
-                        <option value="Men's Road Running Shoes">Men's Road Running Shoes</option>
-                        <option value="Basketball Shoes">Basketball Shoes</option>
+                    <select id="filterbar" onchange="loadevents()">
+                        <option value="all">All</option>
+                        <option value="0">Available</option>
+                        <option value="1">Unavailable</option>
                     </select>
                 </div>
                 <div class="sort">
-                    Sort Price:
-                    <select id="sortbar" onchange="loadXMLDoc('sort')" value="">
-                        <option value="None">None</option>
-                        <option value="ascending">Low to High</option>
-                        <option value="descending">High to Low</option>
+                    Sort by Location:
+                    <select id="locationbar" onchange="loadevents()">
+                        <option value="none">All</option>
+                        <?php
+                        $sql = "SELECT DISTINCT Location FROM events";
+                        $result = $con->query($sql);
+
+                        $options = "";
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $options .= "<option value='" . $row["Location"] . "'>" . $row["Location"] . "</option>";
+                            }
+                        } else {
+                            $options .= "<option value=''>No locations found</option>";
+                        }
+                        echo $options;
+                        $con->close();
+                        ?>
                     </select>
                 </div>
+
             </div>
-            <div class="output">
-                <div id="demo">
-                </div>
+            <div class="output" id="eventsList">
             </div>
+            <script>
+                function loadevents() {
+                    var filterValue = document.getElementById("filterbar").value;
+                    var locationValue = document.getElementById("locationbar").value;
+                    var searchValue = document.getElementById("searchInput").value;
+
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            updateEventsList(this.responseText);
+                        }
+                    };
+                    xhttp.open("GET", "get_items.php?filter=" + filterValue + "&location=" + locationValue + "&search=" + searchValue, true);
+                    xhttp.send();
+                }
+
+                function searchEvents() {
+                    loadevents();
+                }
+
+                function updateEventsList(response) {
+                    var eventsList = document.getElementById("eventsList");
+                    eventsList.innerHTML = response;
+                }
+            </script>
         </section>
     </div>
     <?php include("footer.php"); ?>
