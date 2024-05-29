@@ -62,8 +62,6 @@ nav {
     font-weight: 700;
     font-family: monospace;
     font-size: 40px;
-    filter: invert(1);
-    color: white;
 }
 
 a {
