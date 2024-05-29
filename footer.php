@@ -17,13 +17,13 @@
         <div class="footer-right">
             <h3>Contact Us</h3>
             <ul>
-                <li>Email: <a href="mailto:info@eventmanagement.com">info@eventmanagement.com</a></li>
-                <li>Phone: +1 (123) 456-7890</li>
+                <li>Email: <a href="mailto:info@eventmanagement.com">emailmopre@eventmanagement.com</a></li>
+                <li>Phone: +63 (123) 456-7890</li>
                 <li>Address: 123 Event Street, Event City, EC 12345</li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2024 Event Management System. All rights reserved.</p>
+        <p>&copy; 2024 Ric Events. All rights reserved.</p>
     </div>
 </footer>

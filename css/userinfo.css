@@ -1,0 +1,76 @@
+/* Primary color */
+:root {
+    --primary-color: #333;
+}
+
+/* Wrapper */
+.wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Form */
+form {
+    padding: 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+/* Profile Picture */
+#w1 img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Upload Button */
+.btn-upload-img {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Text Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+/* Save Button */
+.btn-save {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btnsave {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Borders */
+.border {
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.weditimg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

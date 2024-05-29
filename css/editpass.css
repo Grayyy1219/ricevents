@@ -1,0 +1,79 @@
+.wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.weform {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inweform {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.weitem {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type='password'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.password-mismatch {
+    border-color: red;
+}
+
+/* Button Styles */
+.btn-save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btnsave {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btnsave input {
+    display: none;
+}
+
+/* Text Styles */
+p {
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 15px;
+        margin: 20px;
+    }
+}

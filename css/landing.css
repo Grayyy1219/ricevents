@@ -1,0 +1,173 @@
+.landing {
+  display: flex;
+  margin-top: 20px;
+  padding: 30px;
+  align-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: #00000014;
+  border-radius: 20px 20px 0 0;
+  min-width: 86vw;
+  justify-content: center;
+}
+
+.one {
+  position: relative;
+  /* Make sure .one is positioned relative for absolute positioning of overlay */
+  width: 86vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  filter: grayscale(50%);
+  border-radius: 0 0 20px 20px;
+}
+
+.one::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../upload/page/bg.png);
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  border-radius: 0 0 20px 20px;
+}
+
+.one h2 {
+  font-size: 100px;
+  text-transform: uppercase;
+  color: white;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+
+.one .p {
+  font-family: "Arimo", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  padding-left: 50px;
+  filter: drop-shadow(0 0 0.6px rgb(0, 0, 0));
+}
+
+/* slideshow */
+.slideshow-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mySlides {
+  display: none;
+}
+
+.dot {
+  transition: all 0.5s ease-in-out;
+  height: 11px;
+  width: 11px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  border: 0.1px solid rgba(0, 0, 0, 0.34);
+}
+
+.active {
+  background-color: #333333d2;
+  width: 50px;
+  border-radius: 30px;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .text {
+    font-size: 11px;
+  }
+}
+
+/* categories */
+.itemcard2 {
+  display: flex;
+  background-color: #efefef;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 44px;
+  min-width: 190px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.itemcard2>img {
+  background-color: white;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#shop {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.categories {
+  text-align: center;
+}
+
+.shop {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  max-width: 590px;
+}
+
+.update {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px;
+  margin-right: 100px;
+  gap: 4vw;
+}
+
+.update select {
+  padding: 1vh;
+}
+
+.output {
+  margin-top: 50px;
+  border: solid rgba(0, 0, 0, 0.288) 1px;
+  border-radius: 10px;
+  min-width: 20vw;
+  min-height: 20vh;
+  display: flex;
+  padding: 50px;
+  margin: 50px;
+}
