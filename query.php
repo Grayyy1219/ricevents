@@ -47,6 +47,6 @@ echo "<style>
 </style>"; ?>
 <script>
     function verify() {
-        alert("Please verify first");
+        alert("Please login into a verify account first.");
     }
 </script>

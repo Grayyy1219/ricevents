@@ -40,7 +40,7 @@
                 $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
                       FROM myevents
                       INNER JOIN events ON myevents.eventid  = events.EventID 
-                      WHERE myevents.customer_id = $UserID";
+                      WHERE myevents.customer_id = $UserID ORDER BY events.EventID ASC";
                 $result = mysqli_query($con, $getEventQuery);
                 $totalCartValue = 0;
             ?>
@@ -163,5 +163,3 @@
 <script src="js/slide.js"></script>
 
 </html>
-
-

@@ -18,6 +18,9 @@ a {
     cursor: pointer;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
 
 /* Start header */
 .promsale {

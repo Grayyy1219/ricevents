@@ -13,10 +13,11 @@
 
 .your-events {
     background-color: #313237;
-    height: 500px;
+    min-height: 450px;
     width: 500px;
     border-radius: 10px 10px 0 0;
     border-right: solid 1px #333;
+
 }
 
 section#myevent {
@@ -83,4 +84,15 @@ span.usericon {
     border-radius: 5px;
     font-size: 14px;
     justify-content: center;
+}
+
+.row5 {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+p.description {
+    color: #bbb;
 }

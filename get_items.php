@@ -44,7 +44,6 @@ if ($result->num_rows > 0) {
         echo " <a href='eventdetails.php?eventid=" . $row['EventID'] . "'>";
         echo "<div class='event-card' onclick='preview(" . $row["EventID"] . ")'>";
         echo "<h3>" . htmlspecialchars($row["EventTitle"]) . "</h3>";
-        // echo "<p><strong>Description:</strong> " . htmlspecialchars($row["Description"]) . "</p>"; 
         echo "<p><strong>Date:</strong> " . $formattedDate . "</p>";
         echo "<p><strong>Location:<br></strong> " . htmlspecialchars($row["Location"]) . "</p>";
         echo "</div>";

@@ -49,7 +49,7 @@
                             <div class="row4">
                                 <div class="headertitle">
                                     <img src="css/img/time.png" style="width: 30px;">
-                                    <p class="count">Iterested Users</p>
+                                    <p class="count">Iterested people/s</p>
                                 </div>
                                 <div class="usersin">
                                     <?php
@@ -73,27 +73,45 @@
                             </div>
                             <div class="row5">
                                 <div class="btns">
-                                    <?php if ($inthis == "1") { ?>
-                                        <a <?php if ($username != 0) {
-                                                echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
-                                            } else {
-                                                echo "onclick='verify()'";
-                                            } ?>>
-                                            <div class="inbtns" style="color: white; background-color: red;">
-                                                <p>Unregister</p>
-                                            </div>
-                                        </a>
-                                    <?php } else { ?>
-                                        <a <?php if ($username != 0) {
-                                                echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
-                                            } else {
-                                                echo "onclick='verify()'";
-                                            } ?>>
-                                        <div class="inbtns" style="color: white; background-color: green;">
-                                            <p>Interested</p>
-                                        </div>
-                                        </a>
-                                    <?php } ?>
+                                    <?php
+                                    $currentDate = new DateTime();
+                                    $isPassed = $date < $currentDate;
+                                    if ($isPassed) {
+                                        echo "This event is on $formattedDate has already passed.";
+                                        if ($inthis == "1") { ?>
+                                            <a>
+                                                <div class="inbtns" style="color: white; background-color: gray;">
+                                                    <p>Done</p>
+                                                </div>
+                                            </a>
+                                        <?php }
+                                    } else {
+                                        echo "This event is on $formattedDate is upcoming.";
+                                        if ($inthis == "1") { ?>
+                                            <a <?php if ($username != 0) {
+                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
+                                                } else {
+                                                    echo "onclick='verify()'";
+                                                } ?>>
+                                                <div class="inbtns" style="color: white; background-color: red;">
+                                                    <p>Unregister</p>
+                                                </div>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a <?php if ($username != 0) {
+                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
+                                                } else {
+                                                    echo "onclick='verify()'";
+                                                } ?>>
+                                                <div class="inbtns" style="color: white; background-color: green;">
+                                                    <p>Interested</p>
+                                                </div>
+                                            </a>
+                                    <?php }
+                                    }
+
+
+                                    ?>
                                 </div>
                             </div>
                         </div>

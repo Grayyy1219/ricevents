@@ -8,7 +8,7 @@
             <div class="headerlink">
                 <a href="Landingpage.php#myevent">My Events</a>
                 <a href="Landingpage.php#events">Discoveries</a>
-                <a href="Landingpage.php#3">Browse</a>
+                <a href="Landingpage.php#events">Browse</a>
             </div>
         </div>
 
@@ -36,9 +36,6 @@
                     <p class='email'><?= $email; ?></p>
                 </div>
                 <div class='carts'>
-                    <a href='cart.php'>
-                        <img src='css/img/form.png' width='25' id='currentuser'>
-                    </a>
                     <a onclick='showSettingsPopup()'>
                         <img src='css/img/setting.png' width='25' id='profile'>
                     </a>
@@ -119,13 +116,7 @@
                             <p style="color: white;">Change Password</p>
                         </div>
                     </a>
-                    <a href="history.php">
-                        <div class="inbtn">
-                            <p style="color: white;">Purchase History</p>
-                        </div>
-                    </a>
                 </div>
-
                 <a href="logout.php">
                     <div class="LogOut">
                         <p>Log Out</p>
