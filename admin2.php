@@ -19,10 +19,10 @@
         <div class="sidepanel">
             <a href="admin2.php?dashboard"><img src="css/img/dashboard.png">Dashboard</a>
 
-            <a href="#" class="toggle" data-target="#products"><img src="css/img/dataset.png">Event<img src="css/img/down.png" class="down-arrow-icon"></a>
-            <div id="products" class="collapse nested-menu">
-                <a href="admin2.php?insert_products">Insert Event</a>
-                <a href="admin2.php?view_products">View Event</a>
+            <a href="#" class="toggle" data-target="#events"><img src="css/img/dataset.png">Event<img src="css/img/down.png" class="down-arrow-icon"></a>
+            <div id="events" class="collapse nested-menu">
+                <a href="admin2.php?insert_events">Insert Event</a>
+                <a href="admin2.php?view_events">View Event</a>
             </div>
 
             <a href="#" class="toggle" data-target="#customers"><img src="css/img/edit.png">View User<img src="css/img/down.png" class="down-arrow-icon"></a>
@@ -44,18 +44,17 @@
             include("dashboard.php");
         }
 
-        if (isset($_GET['view_products'])) {
-            include("view_products.php");
+        if (isset($_GET['view_events'])) {
+            include("view_events.php");
         }
-        if (isset($_GET['delete_product'])) {
-            include("delete_product.php");
+        if (isset($_GET['delete_event'])) {
+            include("delete_event.php");
         }
-        
-        if (isset($_GET['edit_product'])) {
+        if (isset($_GET['edit_event'])) {
             include("edit_event.php");
         }
-        if (isset($_GET['insert_products'])) {
-            include("add_book_form.php");
+        if (isset($_GET['insert_events'])) {
+            include("insert_events.php");
         }
 
         if (isset($_GET['view_user'])) {

@@ -4,21 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book Information</title>
-    <link rel="stylesheet" href="css/header.css">
+    <title>Edit Event Information</title>
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/editbook.css">
+    <style>
+        section {
+            padding: 20px;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input[type="text"],
+        form input[type="date"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form input[type="button"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        form input[type="button"]:hover {
+            background-color: #555;
+        }
+    </style>
     <script>
-        function updateBook() {
-            var form = document.getElementById('editBookForm');
+        function updateEvent() {
+            var form = document.getElementById('editEventForm');
             var formData = new FormData(form);
 
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'update_item.php', true); // Update the PHP file name
+            xhr.open('POST', 'update_event.php', true);
             xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Book updated successfully!');
-                    window.location.href = 'admin2.php?view_products';
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        alert('Event updated successfully!');
+                        window.location.href = 'admin2.php?view_events';
+                    } else {
+                        alert('Error updating event: ' + xhr.responseText);
+                    }
                 }
             };
             xhr.send(formData);
@@ -30,11 +81,11 @@
     <?php
     include 'connect.php';
 
-    function getBookDetails($con, $bookId)
+    function getEventDetails($con, $eventId)
     {
         $sql = "SELECT * FROM events WHERE EventID = ?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param("i", $bookId);
+        $stmt->bind_param("i", $eventId);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -47,40 +98,25 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $bookId = isset($_GET["bookId"]) ? $_GET["bookId"] : '';
-        $bookDetails = getBookDetails($con, $bookId);
+        $eventId = isset($_GET["eventId"]) ? $_GET["eventId"] : '';
+        $eventDetails = getEventDetails($con, $eventId);
     }
     ?>
     <section>
         <div class="wrapper" id="w3">
-            <h2 style="font-size: 30px;">Item Information</h2><br>
-            <form id="editBookForm" enctype="multipart/form-data" method="POST" action="">
-                <?php if ($bookDetails) : ?>
-                    <input type="hidden" name="bookId" value="<?php echo htmlspecialchars($bookDetails['EventID']); ?>">
-                    Name: <input type="text" name="title" value="<?php echo htmlspecialchars($bookDetails['EventTitle']); ?>"><br>
-                    Description: <input type="text" name="publisher" value="<?php echo htmlspecialchars($bookDetails['Description']); ?>"><br>
-                    Date: <input type="date" name="publisher" value="<?php echo htmlspecialchars($bookDetails['Date']); ?>"><br>
-                    Price: <input type="text" name="price" value="<?php echo htmlspecialchars($bookDetails['Location']); ?>"><br>
+            <h2 style="font-size: 30px;">Event Information</h2><br>
+            <form id="editEventForm" enctype="multipart/form-data" method="POST" action="">
+                <?php if ($eventDetails) : ?>
+                    <input type="hidden" name="eventId" value="<?php echo htmlspecialchars($eventDetails['EventID']); ?>">
+                    Title: <input type="text" name="title" value="<?php echo htmlspecialchars($eventDetails['EventTitle']); ?>"><br>
+                    Description: <input type="text" name="description" value="<?php echo htmlspecialchars($eventDetails['Description']); ?>"><br>
+                    Date: <input type="date" name="date" value="<?php echo htmlspecialchars($eventDetails['Date']); ?>"><br>
+                    Location: <input type="text" name="location" value="<?php echo htmlspecialchars($eventDetails['Location']); ?>"><br>
                 <?php endif; ?>
-                <input type="submit" onclick="updateBook()" value=" Update">
+                <input type="button" onclick="updateEvent()" value="Update">
             </form>
         </div>
     </section>
-    <script>
-        document.getElementById('img').addEventListener('change', function(event) {
-            const fileInput = event.target;
-            const profileImage = document.getElementById('profileImage');
-
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profileImage.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 </body>
 
 </html>
