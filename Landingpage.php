@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/slideshow.css">
     <link rel="stylesheet" href="css/eventstable.css">
     <link rel="icon" href="css/img/logo.ico">
-
 </head>
 
 <body onload="loadevents()">
@@ -35,49 +34,53 @@
                 </div>
             </div>
         </section>
-        <section id="myevent" style="    padding-top: 50px;">
+        <section id="myevent" style="padding-top: 50px;">
             <?php
-            $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
+            if (isset($UserID)) {
+                $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
                       FROM myevents
                       INNER JOIN events ON myevents.eventid  = events.EventID 
                       WHERE myevents.customer_id = $UserID";
-            $result = mysqli_query($con, $getEventQuery);
-            $totalCartValue = 0;
+                $result = mysqli_query($con, $getEventQuery);
+                $totalCartValue = 0;
             ?>
-            <div class="your-events">
-                <div class="headertitle">
-                    <img src="css/img/time.png" style="width: 30px;">
-                    <p class="count"><?= $eventcount ?></p>
-                    <p class="HeaderName">Events you are in</p>
-                </div>
-                <div class="iventdom">
-                    <?php while ($row = mysqli_fetch_assoc($result)) {
-                        $dateFromDb = $row['Date'];
-                        $date = new DateTime($dateFromDb);
-                        $formattedDate = $date->format('F j, Y');
-                    ?>
-                        <div class="perevent">
-                            <div class="eventdate">
-                                <img src="css/img/time.png" style="width: 25px;">
-                                <p><?= $formattedDate ?></p>
-                            </div>
-                            <div class="rows">
-                                <div class="row">
-                                    <h1 class="eventh1"><?= $row['EventTitle'] ?></h1>
+                <div class="your-events">
+                    <div class="headertitle">
+                        <img src="css/img/time.png" style="width: 30px;">
+                        <p class="count"><?= $eventcount ?></p>
+                        <p class="HeaderName">Events you are in</p>
+                    </div>
+                    <div class="iventdom">
+                        <?php while ($row = mysqli_fetch_assoc($result)) {
+                            $dateFromDb = $row['Date'];
+                            $date = new DateTime($dateFromDb);
+                            $formattedDate = $date->format('F j, Y');
+                        ?>
+                            <a href="eventdetails.php?eventid=<?= $row['EventID'] ?>">
+                                <div class="perevent">
+                                    <div class="eventdate">
+                                        <img src="css/img/time.png" style="width: 25px;">
+                                        <p><?= $formattedDate ?></p>
+                                    </div>
+                                    <div class="rows">
+                                        <div class="row">
+                                            <h1 class="eventh1"><?= $row['EventTitle'] ?></h1>
+                                        </div>
+                                        <div class="row2">
+                                            <img src="css/img/pin.png" style="width: 15px;">
+                                            <p class=" location"><?= $row['Location'] ?></p>
+                                        </div>
+                                        <div class="row3">
+                                            <p class="description"><?= $row['Description'] ?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row2">
-                                    <img src="css/img/pin.png" style="width: 15px;">
-                                    <p class=" location"><?= $row['Location'] ?></p>
-                                </div>
-                                <div class="row3">
-                                    <p class="description"><?= $row['Description'] ?></p>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
 
-                    <?php } ?>
+                    <?php }
+                    } ?>
+                    </div>
                 </div>
-            </div>
         </section>
         <section id="events">
             <h1 style=" text-align: center; font-size: xxx-large; ">Events</h1>
@@ -149,7 +152,7 @@
                     eventsList.innerHTML = response;
                 }
 
-                function preview($eventid){
+                function preview($eventid) {
 
                 }
             </script>
@@ -160,3 +163,5 @@
 <script src="js/slide.js"></script>
 
 </html>
+
+

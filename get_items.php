@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
         $dateFromDb = $row['Date'];
         $date = new DateTime($dateFromDb);
         $formattedDate = $date->format('F j, Y');
-
+        echo " <a href='eventdetails.php?eventid=" . $row['EventID'] . "'>";
         echo "<div class='event-card' onclick='preview(" . $row["EventID"] . ")'>";
         echo "<h3>" . htmlspecialchars($row["EventTitle"]) . "</h3>";
         // echo "<p><strong>Description:</strong> " . htmlspecialchars($row["Description"]) . "</p>"; 

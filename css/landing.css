@@ -184,7 +184,8 @@
   display: flex;
   padding: 50px;
   margin: 50px;
-  gap: 50px;
+  gap: 21.96px;
+  flex-wrap: wrap;
 }
 
 .event-card {

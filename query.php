@@ -44,4 +44,9 @@ echo "<style>
         --secondary: #005dab;
         --btext: #ffffff;
     }
-</style>";
+</style>"; ?>
+<script>
+    function verify() {
+        alert("Please verify first");
+    }
+</script>
