@@ -22,6 +22,18 @@ a {
     white-space: nowrap;
 }
 
+div#delete {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 50px;
+}
+
+#delete button {
+    padding: 5px 10px;
+    height: 30px;
+}
+
 /* Start header */
 .promsale {
     position: sticky;

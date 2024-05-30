@@ -31,34 +31,18 @@ $run_pro = mysqli_query($con, $get_pro);
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">View Products</h3>
+                <h3 class="panel-title">View Events</h3>
             </div>
             <div class="panel-body">
-                <form method="GET" action="admin2.php">
-                    <input type="hidden" name="view_products" value="1">
-                    <div class="form-group">
-                        <input type="hidden" name="view_products" value="1">
-                        <div class="form-group">
-                            <label for="category">Filter by Category:</label>
-                            <select name="genre" id="category" class="form-control" onchange="this.form.submit()">
-                                <option value="">All Categories</option>
-                                <?php while ($category_row = mysqli_fetch_assoc($categories_result)) : ?>
-                                    <option value="<?php echo $category_row['genre']; ?>" <?php if ($selected_category == $category_row['genre']) echo 'selected'; ?>>
-                                        <?php echo $category_row['genre']; ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-                </form>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Product</th>
-                                <th>Image</th>
-                                <th>Price</th>
-                                <th>Sold</th>
+                                <th>Event</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Location</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>

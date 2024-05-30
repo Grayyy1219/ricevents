@@ -43,22 +43,29 @@
         if (isset($_GET['dashboard'])) {
             include("dashboard.php");
         }
-        
+
         if (isset($_GET['view_products'])) {
             include("view_products.php");
         }
         if (isset($_GET['delete_product'])) {
             include("delete_product.php");
         }
+        
         if (isset($_GET['edit_product'])) {
-            include("editbook.php");
+            include("edit_event.php");
         }
         if (isset($_GET['insert_products'])) {
             include("add_book_form.php");
         }
 
         if (isset($_GET['view_user'])) {
-            include("blockuser.php");
+            include("users.php");
+        }
+        if (isset($_GET['signup'])) {
+            include("signup.php");
+        }
+        if (isset($_GET['edit_customer'])) {
+            include("edit_customer.php");
         }
 
         if (isset($_GET['aedituser'])) {
