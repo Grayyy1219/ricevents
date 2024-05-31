@@ -53,15 +53,17 @@
                                 </div>
                                 <div class="usersin">
                                     <?php
-                                    $stmt = $con->prepare("SELECT users.UserID, users.Username FROM myevents INNER JOIN users ON myevents.customer_id = users.UserID WHERE myevents.EventID = ?");
+                                    $stmt = $con->prepare("SELECT users.UserID, users.Username, myevents.status FROM myevents INNER JOIN users ON myevents.customer_id = users.UserID WHERE myevents.EventID = ?");
                                     $stmt->bind_param('i', $eventid);
                                     $stmt->execute();
                                     $result = $stmt->get_result();
+
                                     $inthis = "0";
                                     while ($row = $result->fetch_assoc()) {
                                         if ($row['Username'] === $username) {
                                             echo "<span class='usericon' style='background-color: gray;'><p>You</p></span>";
                                             $inthis = "1";
+                                            $status = $row['status'];
                                         } else {
                                             echo "<span class='usericon'><p>" . htmlspecialchars($row['Username']) . "</p></span>";
                                         }
@@ -71,49 +73,65 @@
                                     ?>
                                 </div>
                             </div>
+                            <style>
+                                .inbtns {
+                                    color: white;
+                                    padding: 10px;
+                                    text-align: center;
+                                    border-radius: 5px;
+                                    margin: 5px 0;
+                                    cursor: pointer;
+                                    text-decoration: none;
+                                }
+
+                                .inbtns.done {
+                                    background-color: gray;
+                                }
+
+                                .inbtns.unregister {
+                                    background-color: red;
+                                }
+
+                                .inbtns.approved {
+                                    background-color: gray;
+                                }
+
+                                .inbtns.interested {
+                                    background-color: green;
+                                }
+                            </style>
+
                             <div class="row5">
                                 <div class="btns">
                                     <?php
                                     $currentDate = new DateTime();
                                     $isPassed = $date < $currentDate;
-                                    if ($isPassed) {
-                                        echo "This event is on $formattedDate has already passed.";
-                                        if ($inthis == "1") { ?>
-                                            <a>
-                                                <div class="inbtns" style="color: white; background-color: gray;">
-                                                    <p>Done</p>
-                                                </div>
-                                            </a>
-                                        <?php }
+                                    $message = $isPassed ? "This event on $formattedDate has already passed." : "This event on $formattedDate is upcoming.";
+                                    echo $message;
+
+                                    if ($inthis == "1") {
+                                        if ($isPassed) {
+                                            echo '<a><div class="inbtns done"><p>Done</p></div></a>';
+                                        } else {
+                                            $href = $username != 0 ? "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'" : "onclick='verify()'";
+                                            if ($status == 0) {
+                                                $statusText = "<p>Pending</p>";
+                                                $class = "unregister";
+                                            } else {
+                                                $statusText = "<p>Cancel</p>";
+                                                $class = "approved";
+                                            }
+                                            echo "<a $href><div class='inbtns $class'>$statusText</div></a>";
+                                        }
                                     } else {
-                                        echo "This event is on $formattedDate is upcoming.";
-                                        if ($inthis == "1") { ?>
-                                            <a <?php if ($username != 0) {
-                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
-                                                } else {
-                                                    echo "onclick='verify()'";
-                                                } ?>>
-                                                <div class="inbtns" style="color: white; background-color: red;">
-                                                    <p>Unregister</p>
-                                                </div>
-                                            </a>
-                                        <?php } else { ?>
-                                            <a <?php if ($username != 0) {
-                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
-                                                } else {
-                                                    echo "onclick='verify()'";
-                                                } ?>>
-                                                <div class="inbtns" style="color: white; background-color: green;">
-                                                    <p>Interested</p>
-                                                </div>
-                                            </a>
-                                    <?php }
+                                        $href = $username != 0 ? "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'" : "onclick='verify()'";
+                                        echo "<a $href><div class='inbtns interested'><p>Interested</p></div></a>";
                                     }
-
-
                                     ?>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

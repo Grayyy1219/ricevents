@@ -1,6 +1,5 @@
 .your-events {
     background-color: #313237;
-    height: 500px;
     margin: 50px 10px;
     border-radius: 10px 10px 0 0;
 }
@@ -22,11 +21,11 @@
     display: flex;
     gap: 10px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .perevent {
     width: 300px;
-    height: 300px;
     background: #2c2d31;
     color: white;
 
@@ -43,10 +42,6 @@
     font-size: 14px;
     gap: 5px;
     font-weight: 700;
-}
-
-.rows {
-    height: 100%;
 }
 
 .rows div {
@@ -72,4 +67,28 @@
     scrollbar-width: thin;
     scrollbar-color: #888 #ccc;
     font-size: 12.5px;
+}
+
+
+.row4 div {
+    border-bottom: none;
+}
+
+.Approve {
+    margin-left: auto;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.Cancel {
+    padding: 5px;
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 3px;
 }

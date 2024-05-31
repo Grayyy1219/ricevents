@@ -43,7 +43,6 @@
         if (isset($_GET['dashboard'])) {
             include("dashboard.php");
         }
-
         if (isset($_GET['view_events'])) {
             include("view_events.php");
         }

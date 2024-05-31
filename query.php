@@ -11,9 +11,16 @@ if ($username != 0) {
     $rowUser = mysqli_fetch_assoc($queryUser);
     $password = $rowUser["Password"];
     $UserID = $rowUser["UserID"];
-    $query69 = mysqli_query($con, "SELECT COUNT(MyEventID) AS count from myevents WHERE customer_id = $UserID");
-    $row69 = mysqli_fetch_assoc($query69);
-    $eventcount = $row69["count"];
+
+    if ($username != "admin") {
+        $query69 = mysqli_query($con, "SELECT COUNT(MyEventID) AS count from myevents WHERE customer_id = $UserID");
+        $row69 = mysqli_fetch_assoc($query69);
+        $eventcount = $row69["count"];
+    } else {
+        $query69 = mysqli_query($con, "SELECT COUNT(MyEventID) AS count from myevents");
+        $row69 = mysqli_fetch_assoc($query69);
+        $eventcount = $row69["count"];
+    }
 }
 
 
