@@ -13,8 +13,8 @@
         </div>
 
         <div class="searchbar">
-            <input type="text" class="searchinp searchbar" id="searchbar" placeholder=" Search">
-            <button class="searchbtn"><img src="css/img/searchicon.png" width="25" style="filter: invert(1);"></button>
+            <!-- <input type="text" class="searchinp searchbar" id="searchbar" placeholder=" Search">
+            <button class="searchbtn"><img src="css/img/searchicon.png" width="25" style="filter: invert(1);"></button> -->
         </div>
         <?php
         if ($username == "0") { ?>
