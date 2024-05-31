@@ -70,9 +70,9 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
                             <?php
                             if ($row['status'] == 0) { ?>
                                 <a href="updat_status.php?status=1&eventid=<?= $row['MyEventID']; ?>" class="Approve">Approve</a>
-                            <?php } else {
-                                echo '<a class="Approve" style=" background-color: gray; ">Approved</a>';
-                            }
+                            <?php } else { ?>
+                                <a href="updat_status.php?status=0&eventid=<?= $row['MyEventID']; ?>" class="Approve" style=" background-color: gray; ">Approved</a>
+                            <?php }
                             ?>
                             <a href="updat_status.php?status=2&eventid=<?= $row['MyEventID']; ?>" class="Cancel">Cancel</a>
                         </div>

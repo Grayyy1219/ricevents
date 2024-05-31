@@ -7,6 +7,25 @@ if (isset($_GET['status'])) {
     $eventid = $_GET['eventid'];
 
 
+    if ($status == 0) {
+        $sql = "UPDATE myevents SET status = $status WHERE MyEventID = $eventid";
+
+        if ($con->query($sql) === TRUE) {
+            $successMessage = "Approve Cancel.";
+            echo "<script>
+                alert('$successMessage');
+                window.location.href = 'admin2.php?dashboard';
+              </script>";
+            exit();
+        } else {
+            $errorMessage = "Error unblocking user: " . $con->error;
+            echo "<script>
+                alert('Error: $errorMessage');
+                window.location.href = 'admin2.php?dashboard';
+              </script>";
+            exit();
+        }
+    }
 
     if ($status == 1) {
         $sql = "UPDATE myevents SET status = $status WHERE MyEventID = $eventid";

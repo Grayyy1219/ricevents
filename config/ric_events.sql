@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 11:21 AM
+-- Generation Time: May 31, 2024 at 03:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,7 +53,7 @@ CREATE TABLE `currentuser` (
 --
 
 INSERT INTO `currentuser` (`UserId`, `FName`, `username`, `email`, `address`, `phone`, `profile`, `admin`) VALUES
-(1, 'Lance Grayson Musngi', 'lance', 'lance.musngi@gmail.com', NULL, NULL, 'uploads/profile/lance.png', 0);
+(1, 'Ric Eventss', 'admin', 'lance.musngi1@gmail.com', NULL, NULL, 'uploads/profile/logo.png', 0);
 
 -- --------------------------------------------------------
 
@@ -75,11 +75,11 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`EventID`, `EventTitle`, `Description`, `Date`, `Location`, `Available`) VALUES
-(1, 'Career Fair', 'Meet potential employers and explore job opportunities. Open to all graduating students.', '2024-06-05', 'Bulacan State University Gymnasium', 0),
-(2, 'Science Symposium', 'Presentations and discussions on recent advancements in various fields of science.', '2024-06-06', 'Bulacan State University Auditorium', 1),
+(1, 'Career Fair', 'Meet potential employers and explore job opportunities. Open to all graduating students.', '2024-05-22', 'Bulacan State University Gymnasium', 0),
+(2, 'Science Symposium', 'Presentations and discussions on recent advancements in various fields of science.', '2024-06-06', 'Bulacan State University Gymnasium', 1),
 (3, 'Sleep Over ', 'Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis ', '2024-05-31', 'James raile\'s House', 1),
 (4, 'Coding Bootcamp', 'Intensive coding bootcamp covering Python, JavaScript, and SQL. Ideal for beginners and intermediate coders.\r\n', '2024-06-02', 'Bulacan State University', 0),
-(5, 'Art Exhibit', 'Showcase of student artworks from the Fine Arts department. Open to the public.\r\n', '2024-06-06', 'Bulacan State University Gallery', 0),
+(5, 'Art Exhibit', 'Showcase of student artworks from the Fine Arts department. Open to the public.\r\n', '2024-06-06', 'Bulacan State University Gymnasium', 0),
 (6, 'Music Festival', 'Annual music festival featuring bands and solo artists from the university.\r\n', '2024-06-04', 'Bulacan State University Main Grounds', 0),
 (7, 'Tech Startup Workshop', 'Workshop for aspiring tech entrepreneurs covering startup essentials and pitching techniques.', '2024-06-17', 'Innovate Hub Co-working Space', 0),
 (8, 'Fashion Show', 'Annual fashion show featuring designs by students and local designers. Runway and exhibition.', '2024-06-18', 'Glamour Events Hall', 0),
@@ -96,22 +96,18 @@ INSERT INTO `events` (`EventID`, `EventTitle`, `Description`, `Date`, `Location`
 CREATE TABLE `myevents` (
   `MyEventID` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `eventid` int(11) NOT NULL
+  `eventid` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `myevents`
 --
 
-INSERT INTO `myevents` (`MyEventID`, `customer_id`, `eventid`) VALUES
-(1, 4, 2),
-(2, 4, 3),
-(4, 6, 3),
-(6, 6, 2),
-(8, 5, 3),
-(9, 0, 1),
-(10, 4, 1),
-(11, 4, 5);
+INSERT INTO `myevents` (`MyEventID`, `customer_id`, `eventid`, `status`) VALUES
+(4, 11, 3, 0),
+(8, 5, 3, 0),
+(19, 12, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -177,18 +173,20 @@ CREATE TABLE `users` (
   `Email` varchar(255) NOT NULL,
   `profile` varchar(255) NOT NULL,
   `verification_code` int(11) NOT NULL,
-  `verified` int(11) NOT NULL
+  `verified` int(11) NOT NULL,
+  `admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `FName`, `Username`, `Password`, `Email`, `profile`, `verification_code`, `verified`) VALUES
-(4, 'Lance Grayson Musngi', 'lance', '$2y$10$dbB2ID5r7mt.x8q5o95opeN0O0wd2lZWZLeV.Ab4rWPKfXjTSVprW', 'lance.musngi@gmail.com', 'uploads/profile/lance.png', 52203, 1),
-(5, 'kyle musngi', 'kyle', '$2y$10$8gwxzNABhoPr.SE4rhbqkOmCgzeUa97zcD7Vt2zmXjGfxrajFZ3F.', 'lanceka456@gmail.com', 'css/img/new.png', 30762, 1),
-(6, 'Ricmar Events', 'ricmar', '$2y$10$8gwxzNABhoPr.SE4rhbqkOmCgzeUa97zcD7Vt2zmXjGfxrajFZ3F.', 'lanceka4567@gmail.com', 'css/img/new.png', 30764, 1),
-(7, 'kyle musngi77', 'kyle77', '$2y$10$8gwxzNABhoPr.SE4rhbqkOmCgzeUa97zcD7Vt2zmXjGfxrajFZ3F.', 'lanceka45677@gmail.com', 'css/img/new.png', 30761, 1);
+INSERT INTO `users` (`UserID`, `FName`, `Username`, `Password`, `Email`, `profile`, `verification_code`, `verified`, `admin`) VALUES
+(1, 'Ric Eventss', 'admin', '$2y$10$oilozmptugxLRFN2w/DuCe3jwfVC5P9tGvPBFj5ShPX.bffpErUW.', 'lance.musngi1@gmail.com', 'uploads/profile/logo.png', 1, 1, 1),
+(4, 'Lance Grayson Musngi', 'lance', '$2y$10$dbB2ID5r7mt.x8q5o95opeN0O0wd2lZWZLeV.Ab4rWPKfXjTSVprW', 'lance.musngi@gmail.com', 'uploads/profile/lance.png', 67810, 1, 0),
+(5, 'kyle musngi', 'kyle', '$2y$10$8gwxzNABhoPr.SE4rhbqkOmCgzeUa97zcD7Vt2zmXjGfxrajFZ3F.', 'lanceka456@gmail.com', 'css/img/new.png', 30762, 1, 0),
+(11, 'Leoniel Mae Reyes', 'Leo', '$2y$10$.YYROuWgaxYv.Uo0Lxffx.lHu9yq7.Rp9bMGnUKpFwlt/UhJErNaC', 'reyesleoneilmae@gmail.com', 'css/img/new.png', 0, 0, 0),
+(12, 'Jaimes Raille Sitchon', 'rai', '$2y$10$bVN0D3oWYYcZXV5iISjOT.yBI0O76lXaPP4AgFv6C7JYXSfZDjs9m', 'jamesraillesitchon76@gmail.com', 'uploads/profile/rai.jpg', 22584, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -256,13 +254,13 @@ ALTER TABLE `currentuser`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `myevents`
 --
 ALTER TABLE `myevents`
-  MODIFY `MyEventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `MyEventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -280,7 +278,7 @@ ALTER TABLE `slideshow`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
