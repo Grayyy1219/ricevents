@@ -1,94 +1,194 @@
 .your-events {
-    background-color: #313237;
-    margin: 50px 10px;
-    border-radius: 10px 10px 0 0;
+  background-color: #313237;
+  margin: 50px 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .headertitle {
-    display: flex;
-    background-color: #1e1f23;
-    height: 60px;
-    border-radius: 10px 10px 0 0;
-    align-items: center;
-    padding: 5px 5px 5px 13px;
-    color: white;
-    font-size: 14px;
-    gap: 5px;
-    font-weight: 700;
+  display: flex;
+  background-color: #1e1f23;
+  height: 60px;
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  padding: 5px 5px 5px 13px;
+  color: white;
+  font-size: 14px;
+  gap: 5px;
+  font-weight: 700;
 }
 
 .iventdom {
-    display: flex;
-    gap: 10px;
-    padding: 30px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  padding: 30px;
+  flex-wrap: wrap;
 }
 
 .perevent {
-    width: 300px;
-    background: #2c2d31;
-    color: white;
-
+  width: 300px;
+  background: #2c2d31;
+  color: white;
 }
 
 .eventdate {
-    display: flex;
-    background-color: #1e1f23;
-    height: 60px;
-    border-radius: 10px 10px 0 0;
-    align-items: center;
-    padding: 5px 5px 5px 13px;
-    color: white;
-    font-size: 14px;
-    gap: 5px;
-    font-weight: 700;
+  display: flex;
+  background-color: #1e1f23;
+  height: 60px;
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  padding: 5px 5px 5px 13px;
+  color: white;
+  font-size: 14px;
+  gap: 5px;
+  font-weight: 700;
 }
 
-.rows div {
-    padding: 15px 20px;
-    border-bottom: solid 2px #313237;
-}
+
 
 .row {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .row2 {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .row3 {
-    height: 45%;
-    overflow-y: auto;
-    padding: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #ccc;
-    font-size: 12.5px;
+  height: 45%;
+  overflow-y: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #ccc;
+  font-size: 12.5px;
 }
 
-
 .row4 div {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .Approve {
-    margin-left: auto;
-    padding: 5px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 3px;
+  margin-left: auto;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
 }
 
 .Cancel {
-    padding: 5px;
-    cursor: pointer;
-    background-color: orangered;
-    color: white;
-    border: none;
-    border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: orangered;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.day {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: calc(14.28% - 10px);
+  height: 200px;
+  margin: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.date {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.no-event {
+  color: #999;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.perevent {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.perevent:hover {
+  background-color: #f1f1f1;
+}
+
+.eventdate {
+  display: flex;
+  align-items: center;
+}
+
+.eventdate img {
+  margin-right: 10px;
+}
+
+
+
+.eventh1 {
+  font-size: 1.2em;
+  margin: 0;
+  text-align: center;
+}
+
+.row2,
+.row3 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.row2 img,
+.row3 img {
+  margin-right: 5px;
+}
+
+.location,
+.description {
+  text-align: center;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+}
+
+.pagination a:hover {
+  background-color: #f1f1f1;
+}
+
+.pagination a.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }

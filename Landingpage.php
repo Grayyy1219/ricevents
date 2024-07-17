@@ -10,15 +10,16 @@
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/slideshow.css">
     <link rel="stylesheet" href="css/eventstable.css">
+    <link rel="stylesheet" href="css/calendar.css">
     <link rel="icon" href="css/img/logo.ico">
 </head>
 
-<body onload="loadevents()">
+<body>
     <?php include("header.php"); ?>
     <div class="body">
         <section>
             <div class="" id="w1">
-                <div class=" slideshow-container">
+                <div class="slideshow-container">
                     <button class="prev-button">&#10094;</button>
                     <div class="slides-container">
                         <?php
@@ -37,10 +38,10 @@
         <section id="myevent" style="padding-top: 50px;">
             <?php
             if (isset($UserID)) {
-                $getEventQuery = "SELECT myevents.MyEventID , events.EventID , events.EventTitle, events.Description, events.Date, events.Location
-                      FROM myevents
-                      INNER JOIN events ON myevents.eventid  = events.EventID 
-                      WHERE myevents.customer_id = $UserID ORDER BY events.EventID ASC";
+                $getEventQuery = "SELECT myevents.MyEventID, events.EventID, events.EventTitle, events.Description, events.Date, events.Location
+                                  FROM myevents
+                                  INNER JOIN events ON myevents.eventid = events.EventID 
+                                  WHERE myevents.customer_id = $UserID ORDER BY events.EventID ASC";
                 $result = mysqli_query($con, $getEventQuery);
                 $totalCartValue = 0;
             ?>
@@ -68,7 +69,7 @@
                                         </div>
                                         <div class="row2">
                                             <img src="css/img/pin.png" style="width: 15px;">
-                                            <p class=" location"><?= $row['Location'] ?></p>
+                                            <p class="location"><?= $row['Location'] ?></p>
                                         </div>
                                         <div class="row3">
                                             <p class="description"><?= $row['Description'] ?></p>
@@ -76,22 +77,18 @@
                                     </div>
                                 </div>
                             </a>
-
-                    <?php }
-                    } ?>
+                        <?php } ?>
                     </div>
                 </div>
+            <?php } ?>
         </section>
         <section id="events">
-            <h1 style=" text-align: center; font-size: xxx-large; ">Events</h1>
+            <h1 style="text-align: center; font-size: xxx-large;">Event Calendar</h1>
             <div class="update">
                 <div class="search">
                     Search by Title:
                     <input type="text" id="searchInput" onkeyup="searchEvents()" placeholder="Enter event title...">
                 </div>
-                <style>
-
-                </style>
                 <div class="filter">
                     Filter:
                     <select id="filterbar" onchange="loadevents()">
@@ -119,47 +116,112 @@
                             $options .= "<option value=''>No locations found</option>";
                         }
                         echo $options;
-                        $con->close();
                         ?>
                     </select>
                 </div>
-
             </div>
             <div class="output" id="eventsList">
+                <?php
+                $currentDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
+                $startDate = (clone $currentDate)->modify('first day of this month');
+                $endDate = (clone $currentDate)->modify('last day of this month');
+
+                $query = "SELECT * FROM events WHERE Date BETWEEN ? AND ?";
+                $stmt = $con->prepare($query);
+                $startDateString = $startDate->format('Y-m-d');
+                $endDateString = $endDate->format('Y-m-d');
+                $stmt->bind_param('ss', $startDateString, $endDateString);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                $events = [];
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $events[$row['Date']][] = $row;
+                }
+                ?>
+
+                <div class="calendar">
+                    <?php
+                    $interval = new DateInterval('P1D');
+                    $datePeriod = new DatePeriod($startDate, $interval, $endDate->add($interval));
+                    foreach ($datePeriod as $date) {
+                        $formattedDate = $date->format('F j, Y');
+                        $dateString = $date->format('Y-m-d');
+                    ?>
+                        <div class="day">
+                            <div class="eventdate">
+                                <img src="css/img/time.png" style="width: 25px;">
+                                <p><?= $formattedDate ?></p>
+                            </div>
+                            <?php
+                            if (isset($events[$dateString])) {
+                                foreach ($events[$dateString] as $event) {
+                            ?>
+                                    <a href="eventdetails.php?eventid=<?= $event['EventID'] ?>">
+                                        <div class="rows">
+                                            <div class="row">
+                                                <h1 class="eventh1"><?= $event['EventTitle'] ?></h1>
+                                            </div>
+                                            <div class="row2">
+                                                <p class="location"><?= $event['Location'] ?></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <div class="no-event">No Events</div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="pagination">
+                    <?php
+                    $previousMonth = (clone $currentDate)->modify('-1 month')->format('Y-m-d');
+                    $nextMonth = (clone $currentDate)->modify('+1 month')->format('Y-m-d');
+                    ?>
+                    <a href="?date=<?= $previousMonth ?>">Previous Month</a>
+                    <a href="?date=<?= $nextMonth ?>">Next Month</a>
+                </div>
             </div>
-            <script>
-                function loadevents() {
-                    var filterValue = document.getElementById("filterbar").value;
-                    var locationValue = document.getElementById("locationbar").value;
-                    var searchValue = document.getElementById("searchInput").value;
-
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            updateEventsList(this.responseText);
-                        }
-                    };
-                    xhttp.open("GET", "get_items.php?filter=" + filterValue + "&location=" + locationValue + "&search=" + searchValue, true);
-                    xhttp.send();
-                }
-
-                function searchEvents() {
-                    loadevents();
-                }
-
-                function updateEventsList(response) {
-                    var eventsList = document.getElementById("eventsList");
-                    eventsList.innerHTML = response;
-                }
-
-                function preview($eventid) {
-
-                }
-            </script>
         </section>
     </div>
     <?php include("footer.php"); ?>
 </body>
+<script>
+    function loadevents() {
+        var filterValue = document.getElementById("filterbar").value;
+        var locationValue = document.getElementById("locationbar").value;
+        var searchValue = document.getElementById("searchInput").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                updateEventsList(this.responseText);
+            }
+        };
+        xhttp.open("GET", "get_items.php?filter=" + filterValue + "&location=" + locationValue + "&search=" + searchValue, true);
+        xhttp.send();
+    }
+
+    function searchEvents() {
+        loadevents();
+    }
+
+    function updateEventsList(response) {
+        var eventsList = document.getElementById("eventsList");
+        eventsList.innerHTML = response;
+    }
+
+    function preview($eventid) {
+
+    }
+</script>
 <script src="js/slide.js"></script>
 
 </html>

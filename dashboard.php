@@ -100,12 +100,6 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
 
                                     ?>
                                 </p>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
