@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/slideshow.css">
     <link rel="stylesheet" href="css/eventstable.css">
-    <link rel="stylesheet" href="css/calendar.css">
     <link rel="icon" href="css/img/logo.ico">
 </head>
 
@@ -172,6 +171,7 @@
                             } else {
                                 ?>
                                 <div class="no-event">No Events</div>
+                                <input type="button" value="Register Event">
                             <?php
                             }
                             ?>

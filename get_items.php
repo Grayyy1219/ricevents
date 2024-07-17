@@ -18,14 +18,14 @@ if ($location !== 'none') {
     $params[] = $location;
 }
 if (!empty($search)) {
-    $conditions[] = "EventTitle LIKE ?";
+    $conditions[] = "EventTitle LIKE  ?";
     $params[] = "%$search%";
 }
 
 if (!empty($conditions)) {
     $sql .= " AND " . implode(" AND ", $conditions);
 }
-
+$sql .= " ORDER BY Date ASC";
 $stmt = $con->prepare($sql);
 
 if (!empty($params)) {
