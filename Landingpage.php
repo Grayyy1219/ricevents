@@ -156,7 +156,7 @@
                             if (isset($events[$dateString])) {
                                 foreach ($events[$dateString] as $event) {
                             ?>
-                                    <a href="eventdetails.php?eventid=<?= $event['EventID'] ?>">
+                                    <a href="eventdetails.php?eventid=<?= $event['EventID'] ?>" style="height: -webkit-fill-available;">
                                         <div class="rows">
                                             <div class="row">
                                                 <h1 class="eventh1"><?= $event['EventTitle'] ?></h1>
@@ -170,8 +170,10 @@
                                 }
                             } else {
                                 ?>
-                                <div class="no-event">No Events</div>
-                                <input type="button" value="Register Event">
+                                <div class="no-event" style="height: -webkit-fill-available;">
+                                    <p>No Events</p> <input type="button" class="addevent" value="+">
+                                </div>
+
                             <?php
                             }
                             ?>

@@ -15,7 +15,7 @@
 <body>
     <?php include("header.php"); ?>
     <div class="body">
-        <section id="myevent" style=" padding-top: 50px;">
+        <section id="myevent" style=" padding: 50px 0;">
             <?php
             $eventid = $_GET['eventid'];
 
@@ -44,14 +44,36 @@
                                 <p class=" location"><?= $row['Location'] ?></p>
                             </div>
                             <div class="row3">
+                                <img src="<?= $row['EventImg'] ?>" style="width: 100%;aspect-ratio: 2/1;object-fit: cover;">
+                            </div>
+                            <div class="row3">
                                 <p class="description"><?= $row['Description'] ?></p>
                             </div>
                             <div class="row4">
-                                <div class="headertitle">
-                                    <img src="css/img/time.png" style="width: 30px;">
-                                    <p class="count">Iterested people/s</p>
+                                <div class="headertitle" style="justify-content: space-between; padding-right: 20px;">
+                                    <div>
+                                        <img src="css/img/time.png" style="width: 30px;">
+                                        <p class="count">Iterested people/s</p>
+                                    </div>
+                                    <?php
+                                    $sql = "SELECT COUNT(*) as totalevents FROM myevents where eventid = $eventid";
+                                    $result = mysqli_query($con, $sql);
+
+                                    if ($result) {
+                                        $row2 = mysqli_fetch_assoc($result);
+                                        $peoplecount = $row2['totalevents'];
+                                        $available = $row['Available'];
+
+                                        echo "<p>{$peoplecount} / {$available}</p>";
+                                    } else {
+                                        echo "Error: " . mysqli_error($con);
+                                    }
+                                    ?>
+
                                 </div>
                                 <div class="usersin">
+
+
                                     <?php
                                     $stmt = $con->prepare("SELECT users.UserID, users.Username, myevents.status FROM myevents INNER JOIN users ON myevents.customer_id = users.UserID WHERE myevents.EventID = ?");
                                     $stmt->bind_param('i', $eventid);
@@ -68,7 +90,6 @@
                                             echo "<span class='usericon'><p>" . htmlspecialchars($row['Username']) . "</p></span>";
                                         }
                                     }
-
                                     $stmt->close();
                                     ?>
                                 </div>
@@ -91,7 +112,7 @@
                                         echo "This event is on $formattedDate is upcoming.";
                                         if ($inthis == "1") { ?>
                                             <a <?php if ($username != 0) {
-                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
+                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID&peoplecount=$peoplecount&available=$available'";
                                                 } else {
                                                     echo "onclick='verify()'";
                                                 } ?>>
@@ -109,7 +130,7 @@
                                             </a>
                                         <?php } else { ?>
                                             <a <?php if ($username != 0) {
-                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID'";
+                                                    echo "href='editinterest.php?edit=$inthis&eventid=$eventid&customerid=$UserID&peoplecount=$peoplecount&available=$available'";
                                                 } else {
                                                     echo "onclick='verify()'";
                                                 } ?>>

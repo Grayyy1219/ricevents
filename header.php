@@ -54,7 +54,7 @@
                 <span class="subtitle">Welcome back! Please sign in to your account.</span>
                 <div class="form-container">
                     <input type="text" class="input2" id="user" name="user" placeholder="Username" required>
-                    <input type="password" class="input2" name="pass" placeholder="Password" required>
+                    <input type="password" class="input2" name="pass" placeholder="Password" autocomplete="off" required>
                 </div>
                 <input type="submit" class="submit" name="submit" value="Login">
             </form>
@@ -81,8 +81,8 @@
                         <input type="text" class="input2" placeholder="Last Name" name="txtlname" required>
                     </div>
                     <input type="text" class="input2" placeholder="Username" name="txtusername" required>
-                    <input type="password" class="input2" placeholder="Password" name="txtpassword" id="password" required>
-                    <input type="password" class="input2" placeholder="Confirm Password" name="txtcpassword" id="confirmPassword" required>
+                    <input type="password" class="input2" placeholder="Password" autocomplete="off" name="txtpassword" id="password" autocomplete="off" required>
+                    <input type="password" class="input2" placeholder="Confirm Password" autocomplete="off" name="txtcpassword" id="confirmPassword" required>
                     <input type="email" class="input2" placeholder="Email" name="txtemail" required>
                 </div>
                 <input type="submit" class="submit" name="submit" value="Sign Up">

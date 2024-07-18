@@ -13,7 +13,7 @@
                         <input type="text" class="input2" placeholder="Last Name" name="txtlname" required>
                     </div>
                     <input type="text" class="input2" placeholder="Username" name="txtusername" required>
-                    <input type="password" class="input2" placeholder="Password" name="txtpassword" id="password" required>
+                    <input type="password" class="input2" placeholder="Password" autocomplete="off" name="txtpassword" id="password" autocomplete="off" required>
                     <input type='password' class='input2' placeholder='Confirm Password' name='txtcpassword' id="confirmPassword" required>
                     <input type="email" class="input2" placeholder="Email" name="txtemail" required>
                 </div>
