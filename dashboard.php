@@ -44,10 +44,7 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
 <section id="myevent" style="padding-top: 50px;">
     <?php
     if (isset($UserID)) {
-        $getEventQuery = "SELECT myevents.MyEventID , myevents.customer_id , myevents.status, events.EventID ,events.EventTitle, events.Description, events.Date, events.Location
-                      FROM myevents
-                      INNER JOIN events ON myevents.eventid  = events.EventID 
-                       ORDER BY events.EventID ASC";
+        $getEventQuery = "SELECT * FROM events WHERE status !=1 ORDER BY EventID ASC";
         $result = mysqli_query($con, $getEventQuery);
     ?>
         <div class="your-events">
@@ -69,12 +66,12 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
                             <p><?= $formattedDate ?></p>
                             <?php
                             if ($row['status'] == 0) { ?>
-                                <a href="updat_status.php?status=1&eventid=<?= $row['MyEventID']; ?>" class="Approve">Approve</a>
+                                <a href="updat_status.php?status=1&eventid=<?= $row['EventID']; ?>" class="Approve">Approve</a>
                             <?php } else { ?>
-                                <a href="updat_status.php?status=0&eventid=<?= $row['MyEventID']; ?>" class="Approve" style=" background-color: gray; ">Approved</a>
+                                <a href="updat_status.php?status=0&eventid=<?= $row['EventID']; ?>" class="Approve" style=" background-color: gray; ">Approved</a>
                             <?php }
                             ?>
-                            <a href="updat_status.php?status=2&eventid=<?= $row['MyEventID']; ?>" class="Cancel">Cancel</a>
+                            <a href="updat_status.php?status=2&eventid=<?= $row['EventID']; ?>" class="Cancel">Cancel</a>
                         </div>
                         <div class="rows">
                             <div class="row">
@@ -90,7 +87,7 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
                             <div class="row4">
                                 <p class="count">Request by:
                                     <?php
-                                    $requestid = $row['customer_id'];
+                                    $requestid = $row['UserID'];
                                     $sql2 = "SELECT * FROM users WHERE UserID = $requestid";
                                     $row2 = mysqli_query($con, $sql2);
                                     $requestusernames = mysqli_fetch_assoc($row2)['Username'];

@@ -124,12 +124,13 @@
                 $currentDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
                 $startDate = (clone $currentDate)->modify('first day of this month');
                 $endDate = (clone $currentDate)->modify('last day of this month');
+                $approved = 0;
 
-                $query = "SELECT * FROM events WHERE Date BETWEEN ? AND ?";
+                $query = "SELECT * FROM events WHERE Date BETWEEN ? AND ? AND status != ?";
                 $stmt = $con->prepare($query);
                 $startDateString = $startDate->format('Y-m-d');
                 $endDateString = $endDate->format('Y-m-d');
-                $stmt->bind_param('ss', $startDateString, $endDateString);
+                $stmt->bind_param('sss', $startDateString, $endDateString, $approved);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -171,9 +172,9 @@
                             } else {
                                 ?>
                                 <div class="no-event" style="height: -webkit-fill-available;">
-                                    <p>No Events</p> <input type="button" class="addevent" value="+">
+                                    <p>No Events</p>
+                                    <div><a href="user_insert_events.php?date=<?= $dateString ?>"><input type="button" class="addevent" value="+"></a></div>
                                 </div>
-
                             <?php
                             }
                             ?>

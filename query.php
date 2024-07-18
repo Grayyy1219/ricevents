@@ -17,7 +17,7 @@ if ($username != 0) {
         $row69 = mysqli_fetch_assoc($query69);
         $eventcount = $row69["count"];
     } else {
-        $query69 = mysqli_query($con, "SELECT COUNT(MyEventID) AS count from myevents");
+        $query69 = mysqli_query($con, "SELECT COUNT(*) AS count from events where status !=1");
         $row69 = mysqli_fetch_assoc($query69);
         $eventcount = $row69["count"];
     }
