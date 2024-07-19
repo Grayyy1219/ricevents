@@ -9,12 +9,24 @@ if (isset($_GET['edit'])) {
     $peoplecount = $_GET['peoplecount'];
 
     if ($peoplecount >= $available) {
-        $alertMessage = "No available slots left for this event. Please select a different event.";
-        echo "<script>
-        alert('$alertMessage');
-        window.history.back();
-        </script>";
-        exit();
+        if ($edit == 1) {
+            $sql = "DELETE FROM myevents WHERE eventid = $edeventidit and customer_id = $UserID";
+            if ($con->query($sql) === TRUE) {
+                $successMessage = "Successfully Unregistered from the event.";
+                echo "<script>
+                alert('$successMessage');
+                window.location.href = 'Landingpage.php#';
+                </script>";
+                exit();
+            }
+        } else {
+            $alertMessage = "No available slots left for this event. Please select a different event.";
+            echo "<script>
+                alert('$alertMessage');
+                window.history.back();
+                </script>";
+            exit();
+        }
     } else {
         if ($edit == 1) {
             $sql = "DELETE FROM myevents WHERE eventid = $edeventidit and customer_id = $UserID";
@@ -43,4 +55,3 @@ if (isset($_GET['edit'])) {
         }
     }
 }
-?>

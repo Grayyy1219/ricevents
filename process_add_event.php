@@ -7,11 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST["description"];
     $date = $_POST["date"];
     $location = $_POST["location"];
-    if (isset($_POST["slot"])) {
-        $Available = $_POST["slot"];
-    } else {
-        $Available = 50;
-    }
+    $Available = $_POST["slot"];
+    $Method = $_POST["method"];
+    $Price = $_POST["price"];
+
 
     if ($_FILES['imgloc']['size'] > 0) {
         $name = $_FILES['imgloc']['name'];
@@ -28,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>window.history.back();</script>';
     } else {
 
-        $query = "INSERT INTO events (EventTitle, Description, Date, Location, EventImg, Available, UserID) 
-                  VALUES ('$title', '$description', '$date', '$location', '$EventImg', $Available, $UserID)";
+        $query = "INSERT INTO events (EventTitle, Description, Date, Location, EventImg, Available, UserID, Method, Price) 
+                  VALUES ('$title', '$description', '$date', '$location', '$EventImg', $Available, $UserID, '$Method', $Price)";
         echo  $query;
         if (mysqli_query($con, $query)) {
             echo '<script>alert("Event Created successfully!");</script>';

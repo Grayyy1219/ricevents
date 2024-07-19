@@ -73,13 +73,13 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
                             ?>
                             <a href="updat_status.php?status=2&eventid=<?= $row['EventID']; ?>" class="Cancel">Cancel</a>
                         </div>
-                        <div class="rows">
+                        <div class="rows" style=" height: 100%; ">
                             <div class="row">
                                 <h1 class="eventh1"><?= $row['EventTitle'] ?></h1>
                             </div>
                             <div class="row2">
-                                <img src="css/img/pin.png" style="width: 15px;">
-                                <p class=" location"><?= $row['Location'] ?></p>
+                                <img src="<?= $row['EventImg'] ?>">
+                                <p class=" location"><b>Where</b>: <?= $row['Location'] ?></p>
                             </div>
                             <div class="row3">
                                 <p class="description"><?= $row['Description'] ?></p>
@@ -91,12 +91,13 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
                                     $sql2 = "SELECT * FROM users WHERE UserID = $requestid";
                                     $row2 = mysqli_query($con, $sql2);
                                     $requestusernames = mysqli_fetch_assoc($row2)['Username'];
-
-
-                                    echo " <span class='usericon'>$requestusernames</span>";
-
+                                    echo "<span class='usericon'>$requestusernames</span>";
                                     ?>
                                 </p>
+                            </div><br>
+                            <div class="row5">
+                                <p class="count"><b>Price:</b> P<?= $row['Price'] ?>.00</p>
+                                <p class="count"><b>MOP:</b> <?= $row['Method'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -105,6 +106,79 @@ $totaluser = mysqli_fetch_assoc($row)['totaluser'];
             </div>
         </div>
 </section>
+<div class="output" id="eventsList">
+    <?php
+    $currentDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
+    $startDate = (clone $currentDate)->modify('first day of this month');
+    $endDate = (clone $currentDate)->modify('last day of this month');
+    $approved = 0;
+
+    $query = "SELECT * FROM events WHERE Date BETWEEN ? AND ? AND status != ?";
+    $stmt = $con->prepare($query);
+    $startDateString = $startDate->format('Y-m-d');
+    $endDateString = $endDate->format('Y-m-d');
+    $stmt->bind_param('sss', $startDateString, $endDateString, $approved);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $events = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $events[$row['Date']][] = $row;
+    }
+    ?>
+
+    <div class="calendar">
+        <?php
+        $interval = new DateInterval('P1D');
+        $datePeriod = new DatePeriod($startDate, $interval, $endDate->add($interval));
+        foreach ($datePeriod as $date) {
+            $formattedDate = $date->format('F j, Y');
+            $dateString = $date->format('Y-m-d');
+        ?>
+            <div class="day">
+                <div class="eventdate">
+                    <img src="css/img/time.png" style="width: 25px;">
+                    <p><?= $formattedDate ?></p>
+                </div>
+                <?php
+                if (isset($events[$dateString])) {
+                    foreach ($events[$dateString] as $event) {
+                ?>
+                        <a href="eventdetails.php?eventid=<?= $event['EventID'] ?>" style="height: -webkit-fill-available;">
+                            <div class="rows">
+                                <div class="row">
+                                    <h1 class="eventh1"><?= $event['EventTitle'] ?></h1>
+                                </div>
+                                <div class="row2">
+                                    <p class="location"><?= $event['Location'] ?></p>
+                                </div>
+                            </div>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <div class="no-event" style="height: -webkit-fill-available;">
+                        <p>No Events</p>
+                        <div><a href="user_insert_events.php?date=<?= $dateString ?>"><input type="button" class="addevent" value="+"></a></div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+    <div class="pagination">
+        <?php
+        $previousMonth = (clone $currentDate)->modify('-1 month')->format('Y-m-d');
+        $nextMonth = (clone $currentDate)->modify('+1 month')->format('Y-m-d');
+        ?>
+        <a href="?dashboard&date=<?= $previousMonth ?>">Previous Month</a>
+        <a href="?dashboard&date=<?= $nextMonth ?>">Next Month</a>
+    </div>
+</div>
 <style>
     .alldash {
         display: flex;

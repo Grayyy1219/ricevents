@@ -1,7 +1,6 @@
 <?php
 include("connect.php");
 
-$filter = $_GET['filter'];
 $location = $_GET['location'];
 $search = $_GET['search'];
 
@@ -9,10 +8,7 @@ $sql = "SELECT * FROM events WHERE 1";
 $conditions = array();
 $params = array();
 
-if ($filter !== 'all') {
-    $conditions[] = "Available = ?";
-    $params[] = $filter;
-}
+
 if ($location !== 'none') {
     $conditions[] = "Location = ?";
     $params[] = $location;

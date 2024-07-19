@@ -88,14 +88,7 @@
                     Search by Title:
                     <input type="text" id="searchInput" onkeyup="searchEvents()" placeholder="Enter event title...">
                 </div>
-                <div class="filter">
-                    Filter:
-                    <select id="filterbar" onchange="loadevents()">
-                        <option value="all">All</option>
-                        <option value="0">Available</option>
-                        <option value="1">Unavailable</option>
-                    </select>
-                </div>
+
                 <div class="filter">
                     Sort by Location:
                     <select id="locationbar" onchange="loadevents()">
@@ -198,7 +191,6 @@
 </body>
 <script>
     function loadevents() {
-        var filterValue = document.getElementById("filterbar").value;
         var locationValue = document.getElementById("locationbar").value;
         var searchValue = document.getElementById("searchInput").value;
 
@@ -208,7 +200,7 @@
                 updateEventsList(this.responseText);
             }
         };
-        xhttp.open("GET", "get_items.php?filter=" + filterValue + "&location=" + locationValue + "&search=" + searchValue, true);
+        xhttp.open("GET", "get_items.php?filter=" + "&location=" + locationValue + "&search=" + searchValue, true);
         xhttp.send();
     }
 
