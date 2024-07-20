@@ -18,8 +18,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'noreply.thebookhaven@gmail.com';
-    $mail->Password = 'glyt mguu ymqy noks';
+    $mail->Username = 'webdev.cite@gmail.com';
+    $mail->Password = 'iwxeehexxorczpcn';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
 

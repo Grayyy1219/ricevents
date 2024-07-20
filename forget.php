@@ -33,8 +33,8 @@ if ($result->num_rows > 0) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'noreply.thebookhaven@gmail.com';
-        $mail->Password = 'glyt mguu ymqy noks';
+        $mail->Username = 'webdev.cite@gmail.com';
+        $mail->Password = 'iwxeehexxorczpcn';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
         $updatePasswordQuery = "UPDATE users SET Password='$hashedPassword' WHERE email='$resetemail'";
         mysqli_query($con, $updatePasswordQuery);
 
-        $mail->setFrom('noreply.thebookhaven@gmail.com', 'Ric Events');
+        $mail->setFrom('webdev.cite@gmail.com', 'Ric Events');
         $mail->addAddress($resetemail, '');
 
         $message = '
