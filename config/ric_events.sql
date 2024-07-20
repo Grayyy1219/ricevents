@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2024 at 12:01 PM
+-- Generation Time: Jul 20, 2024 at 05:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,7 +57,7 @@ CREATE TABLE `currentuser` (
 --
 
 INSERT INTO `currentuser` (`UserId`, `FName`, `username`, `email`, `address`, `phone`, `profile`, `admin`) VALUES
-(1, 'Lance Musngi', '0', 'lance.musngi@gmail.com', NULL, NULL, 'css/img/new.png', 0);
+(1, 'Lance Musngi', 'lance', 'lance.musngi@gmail.com', NULL, NULL, 'css/img/new.png', 0);
 
 -- --------------------------------------------------------
 
@@ -87,6 +87,7 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`EventID`, `EventTitle`, `Description`, `Date`, `Location`, `EventImg`, `Available`, `status`, `Method`, `Price`, `UserID`) VALUES
 (1, 'Career Fair', 'Meet potential employers and explore job opportunities. Open to all graduating students.', '2024-07-23', 'Adrians House', 'uploads/events/Glamour Events Hall.jpg', 100, 1, '', 0, 1),
 (2, 'Science Symposium', 'Presentations and discussions on recent advancements in various fields of science.', '2024-07-24', 'Bulacan State University Gymnasium', 'uploads\\events\\Bulacan State University Gymnasium.jpg', 100, 1, '', 0, 1),
+(3, 'Sleep Over', 'Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis ', '2024-07-22', 'Adrians House', 'uploads/events/sleepover.png', 20, 1, 'Maya', 3000, 15),
 (4, 'Coding Bootcamp', 'Intensive coding bootcamp covering Python, JavaScript, and SQL. Ideal for beginners and intermediate coders.\r\n', '2024-07-25', 'Bulacan State University', 'uploads\\events\\Bulacan State University.jpg', 50, 1, '', 0, 1),
 (5, 'Art Exhibit', 'Showcase of student artworks from the Fine Arts department. Open to the public.\r\n', '2024-07-26', 'Bulacan State University Gymnasium', 'uploads\\events\\Bulacan State University Gymnasium.jpg', 50, 1, '', 0, 1),
 (6, 'Music Festival', 'Annual music festival featuring bands and solo artists from the university.\r\n', '2024-07-28', 'Bulacan State University Main Grounds', 'uploads\\events\\Bulacan State University Main Grounds.jpg', 50, 1, '', 0, 1),
@@ -95,8 +96,7 @@ INSERT INTO `events` (`EventID`, `EventTitle`, `Description`, `Date`, `Location`
 (9, 'Food Festival', 'Celebration of local cuisine with food stalls, cooking demonstrations, and live music.', '2024-07-31', 'Culinary Delights Plaza', 'uploads\\events\\Culinary Delights Plaza.jpg', 1, 1, '', 0, 1),
 (10, 'Fitness Bootcamp', 'Intensive fitness bootcamp with certified trainers. Outdoor workout sessions and nutrition seminars.', '2024-07-20', 'FitZone Park', 'uploads\\events\\fitzone.jpg', 100, 1, '', 0, 1),
 (11, 'Artisan Market', 'Market showcasing handmade crafts, arts, and gourmet foods by local artisans. Shopping and live entertainment.', '2024-07-21', 'Artisan Alley', 'uploads\\events\\Artisan Alley.jpg', 50, 1, '', 0, 15),
-(3, 'Sleep Over', 'Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis Sleep Over sa bahay ni James Raille Sition, Foods dala ni Mae Reyes then si adrian Tokis ', '2024-07-22', 'Adrians House', 'uploads/events/sleepover.png', 20, 1, 'Maya', 3000, 15),
-(61, 'Peyment na', 'sdsadasd', '2024-08-01', 'test', 'uploads/events/Bulacan State University.jpg', 100, 1, 'Debit Card', 15000, 15);
+(61, 'test', 'sdsadasd', '2024-08-01', 'test', 'uploads/events/Bulacan State University.jpg', 100, 1, 'Debit Card', 15000, 15);
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,10 @@ CREATE TABLE `myevents` (
 INSERT INTO `myevents` (`MyEventID`, `customer_id`, `eventid`, `status`) VALUES
 (27, 1, 3, 0),
 (41, 15, 3, 0),
-(44, 1, 29, 0);
+(44, 1, 29, 0),
+(48, 15, 11, 0),
+(49, 15, 9, 0),
+(50, 1, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -192,6 +195,7 @@ CREATE TABLE `paymethod` (
 INSERT INTO `paymethod` (`method_name`, `method_img`) VALUES
 ('BPI', 'upload\\method\\link-91720ed84858d490ca62142de0494559.png'),
 ('Debit Card', 'upload\\method\\link-cf7aaa8b59e07c8548d2f03f0d930acb.png'),
+('Gcash', ''),
 ('Maya', 'upload\\method\\link-4a1f1c2d9ee1820ccc9621b44f277387.png'),
 ('Visa', 'upload\\method\\link-8efc3b564e08e9e864ea83ab43d9f913.png');
 
@@ -251,7 +255,7 @@ INSERT INTO `users` (`UserID`, `FName`, `Username`, `Password`, `Email`, `profil
 (11, 'Leoniel Mae Reyes', 'Leo', '$2y$10$.YYROuWgaxYv.Uo0Lxffx.lHu9yq7.Rp9bMGnUKpFwlt/UhJErNaC', 'reyesleoneilmae@gmail.com', 'css/img/new.png', 0, 0, 0),
 (13, 'jan ric', 'ric', '$2y$10$c.hM2Nd3sd28zLXaqFDEdOTwDoK36q8blkkm9ZNfrkhlNsFMxcKZa', 'johnricmaralagos9@gmail.com', 'css/img/new.png', 16844, 1, 0),
 (14, 'ric mar', 'ricmar', '$2y$10$7ARA6p7Qwof61.E91gZ/7.z9aAyMMeRC0/DayMabRdpMLI9s19.6m', 'johnricmar.alagos.c@gmail.com', 'uploads/profile/bf098655-3eb7-408e-b7d5-e4a3e1a1bd79.jpg', 55439, 1, 1),
-(15, 'Lance Musngi', 'lance', '$2y$10$qZ9z3..HAEChN6Xd5sXjju.3VMznwztaokjF4IgpnDKz2O1sAbKCG', 'lance.musngi@gmail.com', 'css/img/new.png', 19800, 1, 0);
+(15, 'Lance Musngi', 'lance', '$2y$10$THr2VAQNSYFafYWiAvs4Q.eFel897g0OfpirAdRa8YvIrkZMbBU8q', 'lance.musngi@gmail.com', 'css/img/new.png', 19800, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -333,7 +337,7 @@ ALTER TABLE `currentuser`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `location`
@@ -345,7 +349,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `myevents`
 --
 ALTER TABLE `myevents`
-  MODIFY `MyEventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `MyEventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `page`
