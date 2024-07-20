@@ -1,75 +1,75 @@
 header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .toppanel {
-    display: flex;
-    height: 50px;
-    background-color: rgb(34, 34, 34);
-    border-bottom: solid 1px;
-    border-color: rgb(8, 8, 8);
-    color: #9d9d9d;
-    padding: 15px;
-    font-size: 18px;
-    z-index: 2;
+  display: flex;
+  height: 50px;
+  background-color: rgb(34, 34, 34);
+  border-bottom: solid 1px;
+  border-color: rgb(8, 8, 8);
+  color: #9d9d9d;
+  padding: 15px;
+  font-size: 18px;
+  z-index: 2;
 }
 
 .sidepanel {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(34, 34, 34);
-    width: 255px;
-    height: 100vh;
-    z-index: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(34, 34, 34);
+  width: 255px;
+  height: 100vh;
+  z-index: 2;
 }
 
 .sidepanel a {
-    display: flex;
-    color: #9d9d9d;
-    font-size: 14px;
-    height: 50px;
-    align-items: center;
-    padding: 15px;
-    gap: 10px;
+  display: flex;
+  color: #9d9d9d;
+  font-size: 14px;
+  height: 50px;
+  align-items: center;
+  padding: 15px;
+  gap: 10px;
 }
 
 .collapse a {
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
 .sidepanel a img {
-    filter: brightness(0.5);
-    height: 15px;
+  filter: brightness(0.5);
+  height: 15px;
 }
 
 .nested-menu a:hover {
-    outline: none;
-    background-color: #000 !important;
-    filter: brightness(200%);
+  outline: none;
+  background-color: #000 !important;
+  filter: brightness(200%);
 }
 
 .sidepanel a:hover {
-    outline: none;
-    background-color: #000 !important;
-    filter: brightness(200%);
+  outline: none;
+  background-color: #000 !important;
+  filter: brightness(200%);
 }
 
 .collapse {
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in;
-    padding-top: -10px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in;
+  padding-top: -10px;
 }
 
 .collapse.show {
-    max-height: 500px;
-    padding-top: 0px;
+  max-height: 500px;
+  padding-top: 0px;
 }
 
-.dom {
+/* .dom {
     height: calc(100vh - 50px);
     overflow-y: auto;
     display: flex;
@@ -77,8 +77,17 @@ header {
     width: 86.7%;
     flex-direction: column;
     padding: 50px;
+} */
+.dom {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  display: flex;
+  margin: 50px 0 0 309px;
+  width: 80.7%;
+  flex-direction: column;
+  padding: 50px;
 }
 
 #previewImage {
-    width: 100%;
+  width: 100%;
 }

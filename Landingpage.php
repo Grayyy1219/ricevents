@@ -166,7 +166,10 @@
                                 ?>
                                 <div class="no-event" style="height: -webkit-fill-available;">
                                     <p>No Events</p>
-                                    <div><a href="user_insert_events.php?date=<?= $dateString ?>"><input type="button" class="addevent" value="+"></a></div>
+                                    <?php
+                                    if ($username != 0) { ?>
+                                        <div><a href="user_insert_events.php?date=<?= $dateString ?>"><input type="button" class="addevent" value="+"></a></div>
+                                    <?php } ?>
                                 </div>
                             <?php
                             }
